@@ -3,26 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CamKart - Homepage</title>
+  <title>CampKart - Homepage</title>
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-  <header>
-    <h1>
-    <img src="./assets/logo.png" alt="Campkart Logo" width="180" hight="45">
-    </h1>
+  <header class="headerstyle">
+    <div class="logo">
+      <img src="./assets/logo.png" alt="Campkart Logo" width="180" height="45">
+    </div>
+    
+    <div class="search-bar">
+     <input type="text" id="searchInput" placeholder="find your type and more...">
+     <button onclick="searchProducts()">search
+    </button></div>
+    
+    <div id="login__sell" class="login__sell">
     <nav>
-      <a href="login.html">Login</a>
-      <a href="signup.html">Signup</a>
-      <a href="postAd.html">Post Ad</a>
+      <a href="login.html" id="login-link">Login</a>
+      <a href="signup.html" id="signup-link">Signup</a>
+      <a href="postAd.html" id="post-ad-link">+Sell</a>
+    </div>
+
+      <!-- USER BOX (shown only when logged in) -->
+      <span id="user-box" style="margin-left:20px; font-weight:bold;"></span>
     </nav>
   </header>
+ 
+ <div class="third__navbar">
+        <div class="select__itself">
+            <a href="">All category</a>
+        </div>
+        <div class="links" id="links">
 
+        
+        <button onclick="categorySet(this)">Mobile Phones</button>
+        
+        <button onclick="categorySet(this)">Cycle</button>
+        
+        <button onclick="categorySet(this)">Books</button>
+        
+        <button onclick="categorySet(this)">Laptop</button>
+        
+        <button onclick="categorySet(this)">college-beg</button>
+        
+        <button onclick="categorySet(this)">Tablets</button>
+        
+        <button onclick="categorySet(this)">Pen &amp; Notes</button>
+        </div>
+    </div>
+    
+    <div class="ad">
+        <img src="./assets/ad.jpg" alt="">
+    </div>
+    
   <main>
-    <h2>All Ads</h2>
-    <div id="ads-container"></div>
+  
+   <div class="fresh__recomandation">
+    <h1>Fresh Recomandations</h1>
+    <div id="ads-container" class="ad-containers"></div>
+     <div class="load__more">
+            <button class="load__more-btn">Load More</button>
+     </div>
+   </div> 
   </main>
+  
+  <footer>
+        <div class="footer_the_olx_app_section">
+            <img src="./assets/mobile.webp" alt="">
+            <div class="footer_olx_content">
+                <h1>Try The Campkart App</h1>
+                <h3>
+                    Buy, sell and find just about anything using the app on your mobile.
+                </h3>
+            </div>
+            <div class="line"></div>
+            <div class="get__your_app_today">
+                <h4>Get Your App Today</h4>
+                <div class="apps">
+                    <img src="./assets/apple.svg" alt="">
+                    <img src="./assets/google.svg" alt="">
+                    <img src="./assets/app_galery.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="footer__real">
+            <div class="footer__content">
+                <div class="lists">
 
+                    <ul>
+                        <h4>POPULAR category</h4>
+                        <li>Cycle</li>
+                        <li>Laptop</li>
+                        <li>Mobile Phones</li>
+                        <li>Jobs</li>
+                    </ul>
+                    <ul>
+                        <h4>TRENDING LOCATIONS</h4>
+                        <li>Kanhar Hostel</li>
+                        <li>Gopad Hostel</li>
+                        <li>Indravati</li>
+                        <li>MSH</li>
+                    </ul>
+                    <ul>
+                        <h4>ABOUT US</h4>
+                        <li>Facebook</li>
+                        <li>Instagram</li>                        
+                        <li>Careers</li>
+                        <li>Campkart@ck<li> 
+                    </ul>
+                    <ul>
+                        <h4>Let us Help you</h4>
+                        <li>Your Acoount</li>
+                        <li>Rentuns centre</li>
+                        <li>100% Purchase Protection</li>
+                        <li>Help</li>
+                    </ul>
+                </div>
+                <div class="follow_us">
+                    <h4>FOLLOW US</h4>
+                    <div class="icons">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <div class="apps">
+                        <img src="./assets/apple.svg" alt="">
+                        <img src="./assets/google.svg" alt="">
+                        <img src="./assets/app_galery.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+             <span>© 2025-2025, Campkart.com, Inc. or its affiliates</span>
+            </div>
+            
+        </div>
+    </footer>
+  
   <script src="scripts/main.js"></script>
+
+  <!-- LOGIN CHECK SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("camkart_token");
+      const user = JSON.parse(localStorage.getItem("camkart_user"));
+
+      const loginLink = document.getElementById("login-link");
+      const signupLink = document.getElementById("signup-link");
+      const userBox = document.getElementById("user-box");
+
+      if (token && user) {
+        // Hide login + signup
+        loginLink.style.display = "none";
+        signupLink.style.display = "none";
+
+        // Show welcome message + logout
+        userBox.innerHTML = `
+          Welcome, ${user.name} 👋 |
+          <a href="#" id="logout-btn" style="color:red;">Logout</a>
+        `;
+      }
+    });
+
+    // Logout handling
+    document.addEventListener("click", function (e) {
+      if (e.target.id === "logout-btn") {
+        localStorage.removeItem("camkart_token");
+        localStorage.removeItem("camkart_user");
+        window.location.reload();
+      }
+    });
+  </script>
+
 </body>
 </html>
+
