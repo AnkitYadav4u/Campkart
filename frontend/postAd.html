@@ -9,7 +9,7 @@
 <body>
   <main>
     <h2>Post a New Ad</h2>
-    <form id="postAd-form">
+    <form id="postAd-form" enctype="multipart/form-data">
       <label for="title">Title:</label>
       <input type="text" id="title" required>
 
@@ -19,14 +19,20 @@
       <label for="price">Price (₹):</label>
       <input type="number" id="price" required>
 
-      <label for="images">Image URLs (comma separated):</label>
-      <input type="text" id="images" placeholder="example: img1.jpg,img2.jpg">
+      <label for="images">Upload Images:</label>
+      <div id="drop-area">
+        <p>Drag & drop images here or click to select</p>
+        <input type="file" id="images" multiple accept="image/*" style="display:none">
+        <div id="preview"></div>
+      </div>
 
       <button type="submit">Post Ad</button>
     </form>
     <p id="message"></p>
   </main>
 
+  <!-- JS for handling drag-and-drop + posting -->
   <script src="scripts/postAd.js"></script>
 </body>
 </html>
+
