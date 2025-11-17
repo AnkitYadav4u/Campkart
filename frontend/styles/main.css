@@ -1,33 +1,83 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+/* ---------- General ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto',
+        sans-serif;
+    list-style: none;
+    box-sizing: border-box;
+    outline: none;
 }
 
+body {
+  
+  background-color: #fff;
+}
+
+main {
+  padding: 2rem;
+}
+
+/* ---------- Header ---------- */
 header {
-  background: #f8f9fa;
+  background: #f2f4f5;
   color: #020812;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  box-sizing:border-box;
+  box-sizing: border-box;
+}
+
+.headerstyle {
+  height: 82px;
+  left: 0;
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
 }
 
 header h1 {
-margin: 0;
+  margin: 0;
 }
 
 header img {
-  height: 150px; 
+  height: 100px; /* adjust if needed */
   width: auto;
   vertical-align: middle;
   object-fit: contain;
 }
 
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.search-bar button {
+  background-color: #002f34;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 header nav a {
-  color: #000000;
+  color: #000;
   margin-left: 1rem;
   text-decoration: none;
 }
@@ -36,13 +86,354 @@ header nav a:hover {
   color: #007bff;
 }
 
-main {
-  padding: 2rem;
+.login__sell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    font-weight: 400;
+}
+
+.sell__btn {
+    background: url("https://olx.com.pk/assets/iconSellBorder_noinline.d9eebe038fbfae9f90fd61d971037e02.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 45px;
+    font-size: 15px;
+    border: 0;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #012f34;
+}
+
+.third__navbar {
+    display: flex;
+    align-items: center;
+    margin-top: 150px;
+    justify-content: flex-start;
+    width: 100%;
+    height: 50px;
+    padding: 20px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.select__itself {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.links button {
+    font-size: 17px;
+    border: 0;
+    background: none;
+    text-decoration: none;
+    color: #012f34;
+    margin-right: 10px;
+}
+
+.select__itself a {
+    font-size: 17px;
+    border: 0;
+    background: none;
+    text-decoration: none;
+    color: #012f34;
+    margin-right: 10px;
+}
+
+.select__itself i {
+    font-size: 20px;
+}
+
+.third__navbar .links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.links a {
+    color: #012f34;
+    text-decoration: none;
+    margin-left: 10px;
+    font-weight: 200;
+    font-size: 15px;
+}
+
+.ad {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 240px;
+}
+
+.ad img {
+    width: 1300px;
+}
+
+.fresh__recomandation {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+}
+
+.fresh__recomandation h1 {
+    font-weight: 400;
+    margin-left: 114px;
+}
+
+/* ---------- Ad Cards ---------- */
+
+.ad-containers{ 
+    margin-top: 20px;
+    width: 100%;
+    height: 68%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ad-containers .ad-card {
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 280px;
+    cursor: pointer;
+    border-radius: 3px;
+    height: auto;
+    margin: 20px;
+}
+
+.ad-images {
+    width: 100%;
+    border-bottom: 1px solid #012f34;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eaeaea;
+}
+
+.ad-card img {
+  display: inline-block;
+  margin: 0.25rem 0.5rem 0.5rem 0;
+  border-radius: 5px;
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+}
+
+.ad-images .featured {
+    position: absolute;
+    bottom: 7px;
+    left: 4px;
+    background-color: #ffce32;
+    text-transform: uppercase;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 8px;
 }
 
 .ad-card {
   border: 1px solid #ccc;
   padding: 1rem;
   margin-bottom: 1rem;
-  border-radius: 5px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+
+
+.card__content {
+    border-left: 5px solid #ffce32;
+    width: 100%;
+    padding: 10px;
+}
+
+.card__content-gap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+.ad-card h3 {
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.ad-card h2 {
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.card__content h5 {
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+.ad-card p {
+  margin: 0.25rem 0;
+}
+
+.load__more {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.load__more-btn {
+    background: none;
+    color: #012f34;
+    border: 2px solid #012f34;
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.load__more-btn:hover {
+    border: 3px solid #012f34;
+}
+
+/* ---------- footer-panel---------- */
+
+footer {
+    margin-top: 100px;
+}
+
+.footer_the_olx_app_section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 47, 52, .03);
+}
+
+.footer_the_olx_app_section .footer_olx_content {
+    width: 400px;
+}
+
+.footer_olx_content h1 {
+    font-weight: 500;
+}
+
+.footer_olx_content h3 {
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.get__your_app_today {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 450px;
+}
+
+.apps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.get__your_app_today h4 {
+    font-weight: 300;
+    font-size: 17px;
+}
+
+.apps img {
+    width: 120px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.line {
+    border-left: 1px solid rgba(0, 47, 52, .2);
+    height: 8.6rem;
+    width: .2rem;
+}
+
+.footer__content {
+    background-color: rgba(0, 47, 52, .03);
+    width: 100%;
+    height: 180px;
+    border-top: 1px solid #012f34;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.footer__content .lists {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer__bottom {
+    max-width: 100%;
+    line-height: 40px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #012f34;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 10px 0 30px;
+}
+
+.footer__content ul {
+    margin-left: 40px;
+}
+
+.footer__content ul h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.footer__content ul li {
+    color: rgba(0, 47, 52, .64);
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.icons i {
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 17px;
+    cursor: pointer;
+    border: 1px solid #012f34;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+
+/* ---------- Optional: No ads message ---------- */
+#ad-container p {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+}
+
