@@ -83,7 +83,7 @@ postAdForm.addEventListener('submit', async (e) => {
   uploadedFiles.forEach(file => formData.append('images[]', file));
 
   try {
-    const res = await fetch('http://localhost/my_project/backend/index.php?route=ads&action=create', {
+    const res = await fetch('http://localhost/Campkart/backend/index.php?route=ads&action=create', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,  

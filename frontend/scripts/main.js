@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost/my_project/backend"; 
+const API_BASE = "http://localhost/Campkart/backend"; 
 const container = document.getElementById("ads-container");
 
 async function loadAds() {

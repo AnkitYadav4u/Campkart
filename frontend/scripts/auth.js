@@ -2,7 +2,7 @@
 
 // Auto-detect backend path
 const API_BASE = window.location.origin.includes("localhost")
-  ? "http://localhost/my_project/backend"
+  ? "http://localhost/Campkart/backend"
   : "./backend";
 
 document.addEventListener("DOMContentLoaded", () => {
