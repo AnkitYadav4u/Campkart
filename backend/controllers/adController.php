@@ -25,7 +25,7 @@ try {
     exit;
 }
 
-// -------------------- Create ad --------------------
+// -------------------- CREATE AD --------------------
 function create_ad($pdo) {
     $title = $_POST['title'] ?? '';
     $description = $_POST['description'] ?? '';
@@ -37,12 +37,10 @@ function create_ad($pdo) {
         exit;
     }
 
-    // Insert ad
     $stmt = $pdo->prepare("INSERT INTO ads (title, description, price, user_email) VALUES (?, ?, ?, ?)");
     $stmt->execute([$title, $description, $price, $user_email]);
     $ad_id = $pdo->lastInsertId();
 
-    // Handle uploaded images
     $imagePaths = [];
     if (!empty($_FILES['images'])) {
         $uploadDir = __DIR__ . '/../uploads/';
@@ -56,14 +54,12 @@ function create_ad($pdo) {
                 $relativePath = 'uploads/' . basename($targetFile);
                 $imagePaths[] = $relativePath;
 
-                // Insert into ad_images table
                 $stmtImg = $pdo->prepare("INSERT INTO ad_images (ad_id, image_path) VALUES (?, ?)");
                 $stmtImg->execute([$ad_id, $relativePath]);
             }
         }
     }
 
-    // Return JSON
     echo json_encode([
         'status'=>'success',
         'message'=>'Ad created successfully',
@@ -80,12 +76,11 @@ function create_ad($pdo) {
     exit;
 }
 
-// -------------------- Get ads --------------------
+// -------------------- GET ADS --------------------
 function get_ads($pdo) {
     $stmt = $pdo->query("SELECT * FROM ads ORDER BY created_at DESC");
     $ads = $stmt->fetchAll();
 
-    // Get images for each ad
     foreach ($ads as &$ad) {
         $stmtImg = $pdo->prepare("SELECT image_path FROM ad_images WHERE ad_id=?");
         $stmtImg->execute([$ad['id']]);
@@ -96,15 +91,33 @@ function get_ads($pdo) {
     exit;
 }
 
-// -------------------- Routing --------------------
-$action = $_GET['action'] ?? '';
-$method = $_SERVER['REQUEST_METHOD'];
+// -------------------- SEARCH ADS --------------------
+function search_ads($pdo) {
+    $query = $_GET['query'] ?? '';
+    if (!$query) {
+        echo json_encode([]);
+        exit;
+    }
 
-if ($method === 'POST' && $action === 'create') create_ad($pdo);
-elseif ($method === 'GET' && $action === 'list') get_ads($pdo);
-else {
-    http_response_code(404);
-    echo json_encode(['status'=>'error','message'=>'Not found']);
+    $stmt = $pdo->prepare("
+        SELECT * FROM ads
+        WHERE title LIKE ?
+        OR description LIKE ?
+        OR price LIKE ?
+        ORDER BY created_at DESC
+    ");
+
+    $searchTerm = "%$query%";
+    $stmt->execute([$searchTerm, $searchTerm, $searchTerm]);
+    $ads = $stmt->fetchAll();
+
+    foreach ($ads as &$ad) {
+        $stmtImg = $pdo->prepare("SELECT image_path FROM ad_images WHERE ad_id=?");
+        $stmtImg->execute([$ad['id']]);
+        $ad['images'] = $stmtImg->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    echo json_encode($ads);
     exit;
 }
 ?>
