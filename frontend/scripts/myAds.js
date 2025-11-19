@@ -1,7 +1,7 @@
 // API URLs pointing to index.php router
-const API_USER = "http://localhost/my_project/backend/index.php?route=users";
-const API_ADS  = "http://localhost/my_project/backend/index.php?route=ads";
-const API_BASE = "http://localhost/my_project/backend";
+const API_USER = "http://localhost/Camlpkart/backend/index.php?route=users";
+const API_ADS  = "http://localhost/Campkart/backend/index.php?route=ads";
+const API_BASE = "http://localhost/Campkart/backend";
 
 const user = JSON.parse(localStorage.getItem("camkart_user"));
 if (!user) window.location.href = "login.html";
