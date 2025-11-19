@@ -1,5 +1,5 @@
 // API URLs pointing to index.php router
-const API_USER = "http://localhost/Camlpkart/backend/index.php?route=users";
+const API_USER = "http://localhost/Campkart/backend/index.php?route=users";
 const API_ADS  = "http://localhost/Campkart/backend/index.php?route=ads";
 const API_BASE = "http://localhost/Campkart/backend";
 
