@@ -165,7 +165,7 @@
 
         // Show welcome message + logout
         userBox.innerHTML = `
-          Welcome, ${user.name} 👋 |
+          Welcome, <span id="user-name" style="cursor:pointer; color:blue;">${user.name}</span> 👋 |
           <a href="#" id="logout-btn" style="color:red;">Logout</a>
         `;
       }
@@ -179,6 +179,12 @@
         window.location.reload();
       }
     });
+    // user details handeling
+    document.addEventListener("click", function(e) {
+    if (e.target.id === "user-name") {
+        window.location.href = "myAds.html";
+    }
+});
   </script>
 
 </body>
