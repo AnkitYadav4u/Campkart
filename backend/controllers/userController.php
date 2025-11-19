@@ -101,4 +101,23 @@ function profile_user() {
         'user' => $user
     ]);
 }
+function get_user_details($pdo) {
+    $email = $_GET['user_email'] ?? '';
+    if (!$email) {
+        echo json_encode(['status'=>'error','message'=>'Missing email']);
+        exit;
+    }
+
+    $stmt = $pdo->prepare("SELECT name, email FROM users WHERE email=?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        echo json_encode(['status'=>'error','message'=>'User not found']);
+        exit;
+    }
+
+    echo json_encode(['status'=>'success','user'=>$user]);
+    exit;
+}
 
